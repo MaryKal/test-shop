@@ -2,9 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Basket;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/** @mixin Basket */
 class BasketResource extends JsonResource
 {
     /**
@@ -14,7 +16,6 @@ class BasketResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        //add field with discount value
         return [
             'id' => $this->id,
             'total' => $this->total,

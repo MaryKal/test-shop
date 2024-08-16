@@ -2,9 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Models\BasketProduct;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/** @mixin BasketProduct */
 class BasketProductResource extends JsonResource
 {
     /**

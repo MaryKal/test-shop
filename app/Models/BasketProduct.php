@@ -32,7 +32,10 @@ class BasketProduct extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function countTotal()
+    /**
+     * @return void
+     */
+    public function countTotal(): void
     {
         //if product has no available offer
         if (!$offer = $this->product->offer) {
@@ -51,14 +54,15 @@ class BasketProduct extends Model
         if ($productCount > 1 && $productCount % 2 === 0) {
 
             $this->total = match ($offer->discount_type) {
-                DiscountTypeEnum::PERCENT => round((float)$productPrice * (float)$offer->amount, 2, PHP_ROUND_HALF_DOWN),
-                DiscountTypeEnum::FIXED => round((float)$productPrice - (float)$offer->amount, 2, PHP_ROUND_HALF_DOWN),
+                DiscountTypeEnum::PERCENT->value => round((float)$productPrice * (float)$offer->amount, 2, PHP_ROUND_HALF_DOWN),
+                DiscountTypeEnum::FIXED->value => round((float)$productPrice - (float)$offer->amount, 2, PHP_ROUND_HALF_DOWN),
+                default => $productPrice
             };
         }
 
     }
 
-    /**
+    /**-
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
