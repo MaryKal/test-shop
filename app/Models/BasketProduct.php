@@ -29,7 +29,7 @@ class BasketProduct extends Model
     public function countTotal(): void
     {
         //if product has no available offer
-        if (! $offer = $this->product->offer) {
+        if (!$offer = $this->product->offer) {
             return;
         }
 
@@ -45,8 +45,8 @@ class BasketProduct extends Model
         if ($productCount > 1 && $productCount % 2 === 0) {
 
             $this->total = match ($offer->discount_type) {
-                DiscountTypeEnum::PERCENT->value => round((float) $productPrice * (float) $offer->amount, 2, PHP_ROUND_HALF_DOWN),
-                DiscountTypeEnum::FIXED->value => round((float) $productPrice - (float) $offer->amount, 2, PHP_ROUND_HALF_DOWN),
+                DiscountTypeEnum::PERCENT => round((float)$productPrice * (float)$offer->amount, 2, PHP_ROUND_HALF_DOWN),
+                DiscountTypeEnum::FIXED => round((float)$productPrice - (float)$offer->amount, 2, PHP_ROUND_HALF_DOWN),
                 default => $productPrice
             };
         }
