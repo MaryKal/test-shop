@@ -14,9 +14,6 @@ class Offer extends Model
      */
     protected $guarded = ['id'];
 
-    /**
-     * @return BelongsTo
-     */
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
@@ -29,7 +26,7 @@ class Offer extends Model
     {
         return [
             'discount_type' => DiscountTypeEnum::class,
-            'amount' => MoneyValueCast::class
+            'amount' => MoneyValueCast::class,
         ];
     }
 }

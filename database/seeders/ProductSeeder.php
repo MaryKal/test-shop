@@ -16,21 +16,21 @@ class ProductSeeder extends Seeder
             [
                 'name' => 'Red Widget',
                 'code' => 'R01',
-                'price' => 32.95
+                'price' => 32.95,
             ],
             [
                 'name' => 'Green Widget',
                 'code' => 'G01',
-                'price' => 24.95
+                'price' => 24.95,
             ],
             [
                 'name' => 'Blue Widget',
                 'code' => 'B01',
-                'price' => 7.95
+                'price' => 7.95,
             ],
         ];
 
-        collect($products)->each(fn($product) => Product::create($product));
+        collect($products)->each(fn ($product) => Product::create($product));
 
     }
 }

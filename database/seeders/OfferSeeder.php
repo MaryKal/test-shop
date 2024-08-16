@@ -24,6 +24,6 @@ class OfferSeeder extends Seeder
             ],
         ];
 
-        collect($offers)->each(fn($offer) => Offer::create($offer));
+        collect($offers)->each(fn ($offer) => Offer::create($offer));
     }
 }

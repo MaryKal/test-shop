@@ -16,29 +16,20 @@ class BasketProduct extends Model
      */
     protected $guarded = ['id'];
 
-    /**
-     * @return BelongsTo
-     */
     public function basket(): BelongsTo
     {
         return $this->belongsTo(Basket::class);
     }
 
-    /**
-     * @return BelongsTo
-     */
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
     }
 
-    /**
-     * @return void
-     */
     public function countTotal(): void
     {
         //if product has no available offer
-        if (!$offer = $this->product->offer) {
+        if (! $offer = $this->product->offer) {
             return;
         }
 
@@ -54,8 +45,8 @@ class BasketProduct extends Model
         if ($productCount > 1 && $productCount % 2 === 0) {
 
             $this->total = match ($offer->discount_type) {
-                DiscountTypeEnum::PERCENT->value => round((float)$productPrice * (float)$offer->amount, 2, PHP_ROUND_HALF_DOWN),
-                DiscountTypeEnum::FIXED->value => round((float)$productPrice - (float)$offer->amount, 2, PHP_ROUND_HALF_DOWN),
+                DiscountTypeEnum::PERCENT->value => round((float) $productPrice * (float) $offer->amount, 2, PHP_ROUND_HALF_DOWN),
+                DiscountTypeEnum::FIXED->value => round((float) $productPrice - (float) $offer->amount, 2, PHP_ROUND_HALF_DOWN),
                 default => $productPrice
             };
         }
@@ -73,5 +64,4 @@ class BasketProduct extends Model
             'total' => MoneyValueCast::class,
         ];
     }
-
 }

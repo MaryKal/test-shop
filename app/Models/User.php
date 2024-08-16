@@ -13,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -25,6 +25,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -37,12 +38,9 @@ class User extends Authenticatable
 
     public static function booted()
     {
-        static::created(fn(User $user) => $user->basket()->create());
+        static::created(fn (User $user) => $user->basket()->create());
     }
 
-    /**
-     * @return HasOne
-     */
     public function basket(): HasOne
     {
         return $this->hasOne(Basket::class)->withDefault();
@@ -61,13 +59,10 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * @return Attribute
-     */
     protected function password(): Attribute
     {
         return Attribute::make(
-            set: fn(?string $password) => Hash::needsRehash($password) ? Hash::make($password) : $password
+            set: fn (?string $password) => Hash::needsRehash($password) ? Hash::make($password) : $password
         );
     }
 }

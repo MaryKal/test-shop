@@ -25,7 +25,7 @@ class StoreBasketProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => ['required', 'string', Rule::exists(Product::class, 'code')]
+            'code' => ['required', 'string', Rule::exists(Product::class, 'code')],
         ];
     }
 }

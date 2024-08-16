@@ -24,7 +24,7 @@ class BasketTest extends TestCase
 
         collect($products)->each(function ($code) use (&$response) {
             $response = $this->postJson('api/basket-products', [
-                'code' => $code
+                'code' => $code,
             ]);
 
         }

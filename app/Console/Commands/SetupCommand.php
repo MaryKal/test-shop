@@ -29,14 +29,14 @@ class SetupCommand extends Command
     public function handle()
     {
         Artisan::call('env:decrypt', [
-            '--key' => 'base64:7SwevmTpXwD5rm9gJhoP3e3N0vohO0KPNd1ibj1SutM='
+            '--key' => 'base64:7SwevmTpXwD5rm9gJhoP3e3N0vohO0KPNd1ibj1SutM=',
         ]);
 
         Artisan::call('migrate:fresh --seed');
 
         $token = User::find(1)->createToken(Str::random())->plainTextToken;
 
-        $this->info('Token: ' . $token);
+        $this->info('Token: '.$token);
 
     }
 }

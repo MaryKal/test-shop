@@ -14,5 +14,4 @@ class BasketProductPolicy
     {
         return $user->basket->id === $basketProduct->basket_id;
     }
-
 }

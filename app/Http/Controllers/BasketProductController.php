@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Gate;
 
 class BasketProductController extends Controller
 {
-
-    /**
-     * @param StoreBasketProductRequest $request
-     * @return BasketResource
-     */
     public function store(StoreBasketProductRequest $request): BasketResource
     {
 
@@ -26,17 +21,13 @@ class BasketProductController extends Controller
             ->products()
             ->create([
                 'product_id' => $product->id,
-                'total' => $product->price
+                'total' => $product->price,
             ]);
 
         return BasketResource::make($basket->refresh()->load('products.product:id,name'));
 
     }
 
-    /**
-     * @param BasketProduct $basketProduct
-     * @return BasketResource
-     */
     public function destroy(BasketProduct $basketProduct): BasketResource
     {
 

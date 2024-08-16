@@ -6,7 +6,6 @@ use App\Models\BasketProduct;
 
 class BasketProductObserver
 {
-
     /**
      * Handle the BasketProduct "created" event.
      */
@@ -21,7 +20,6 @@ class BasketProductObserver
         $basketProduct->countTotal();
     }
 
-
     /**
      * Handle the BasketProduct "deleted" event.
      */
@@ -29,5 +27,4 @@ class BasketProductObserver
     {
         $basketProduct->basket->countTotal();
     }
-
 }

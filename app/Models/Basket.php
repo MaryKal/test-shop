@@ -14,9 +14,6 @@ class Basket extends Model
      */
     protected $guarded = ['id'];
 
-    /**
-     * @return BelongsTo
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -37,9 +34,6 @@ class Basket extends Model
         $this->updateQuietly(['total' => round($totalItemsSum + $totalDelivery, 2)]);
     }
 
-    /**
-     * @return HasMany
-     */
     public function products(): HasMany
     {
         return $this->hasMany(BasketProduct::class);
@@ -56,5 +50,4 @@ class Basket extends Model
             'total' => MoneyValueCast::class,
         ];
     }
-
 }

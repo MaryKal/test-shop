@@ -19,7 +19,7 @@ class BasketProductResource extends JsonResource
         return [
             'id' => $this->id,
             'total' => $this->total,
-            'product' => ProductResource::make($this->whenLoaded('product'))
+            'product' => ProductResource::make($this->whenLoaded('product')),
         ];
     }
 }
