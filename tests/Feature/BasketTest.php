@@ -30,7 +30,7 @@ class BasketTest extends TestCase
         }
         );
 
-        $this->assertEquals($response->original->total, $total, 'Total: ' . $total . ' Basket: ' . $response->original->total);
+        $this->assertEquals($response->original->total, $total, 'Total: '.$total.' Basket: '.$response->original->total);
     }
 
     public function test_total_2(): void

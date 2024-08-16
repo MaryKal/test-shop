@@ -28,7 +28,7 @@ class SetupCommand extends Command
      */
     public function handle()
     {
-        if (!file_exists(config('database.connections.sqlite.database'))) {
+        if (! file_exists(config('database.connections.sqlite.database'))) {
 
             file_put_contents(config('database.connections.sqlite.database'), '');
 
@@ -42,6 +42,7 @@ class SetupCommand extends Command
 
         $token = User::find(1)->createToken(Str::random())->plainTextToken;
 
+        $this->info('Token: '.$token);
 
     }
 }
